@@ -11,6 +11,30 @@ External dependencies
  * postgresql
  * python-virtualenv
 
+I have upgraded to : https://github.com/Pylons/pylons and
+https://github.com/Pylons/webob
+
+```
+git clone git@github.com:flosokaks/zookeepr.git
+cd zookeepr/
+sudo apt-get install python-elementtidy
+pip install --user --upgrade WebOb, pyramid, pyramid-debugtoolbar, pyramid-tm, transaction, waitress, zope.sqlalchemy, pylibravatar, pylons, repoze.lru, translationstring, zope.deprecation, venusian, pyramid-mako, WebHelpers, WebError, WebTest
+pip install --user --upgrade WebOb pyramid pyramid-debugtoolbar pyramid-tm transaction waitress zope.sqlalchemy pylibravatar pylons repoze.lru translationstring zope.deprecation venusian pyramid-mako WebHelpers WebError WebTest
+sudo apt-get install python-authkit
+git clone git@github.com:Pylons/webob.git
+cd webob/ &&  python setup.py install --user
+git clone git@github.com:Pylons/pylons.git
+cd pylons/ &&  2008  python setup.py install --user
+sudo apt-get install libpq-dev libpython-dev libxslt1-dev libxml2-dev
+postgresql python-virtualenv
+cp development.ini.sample development.ini
+git cherry-pick daa1702ec4522a991c5f75b17cb27e15375d2631
+alembic --config development.ini history
+alembic --config development.ini upgrade head
+git reset --hard HEAD^
+
+pserve --reload development.ini
+```
 
 Creating a development environment
 ----------------------------------

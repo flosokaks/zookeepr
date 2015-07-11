@@ -21,7 +21,7 @@ from zkpylons.lib.mail import email
 
 from zkpylons.model import meta, Payment, PaymentReceived, Invoice
 
-from zkpylons.config.lca_info import lca_info
+from zkpylons.config.klf_info import klf_info
 
 import zkpylons.lib.pxpay as pxpay
 
@@ -174,7 +174,7 @@ class PaymentController(BaseController):
 
         if len(validation_errors) > 0 and c.response['approved']:
             # Suspiciously approved transaction which needs to be checked manually
-            email(lca_info['contact_email'], render('/payment/suspicious_payment.mako'))
+            email(klf_info['contact_email'], render('/payment/suspicious_payment.mako'))
 
         if c.person is not None:
             email(c.person.email_address, render('/payment/response.mako'))

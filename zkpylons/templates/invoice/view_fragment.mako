@@ -7,8 +7,8 @@
 % endif
 <div class="invoice${ invalid }">
     <div style="text-align:center">
-      <h2>${ h.lca_info['event_parent_organisation'] }</h2>
-      <p>${ h.lca_info['event_tax_number'] }</p>
+      <h2>${ h.klf_info['event_parent_organisation'] }</h2>
+      <p>${ h.klf_info['event_tax_number'] }</p>
     </div>
     <p><strong>Invoice Number:</strong> ${ c.invoice.id }</p>
     <p><strong>Invoice Status:</strong> ${ c.invoice.status }
@@ -91,12 +91,12 @@ Receipt number: <code>PR${ c.payment_received.id }P${ c.payment.id }</code>
     </p>
 
     <div style="text-align:center">
-      <p>${ h.link_to(h.lca_info['event_name'], url=h.lca_info['event_url']) } is a project of ${ h.link_to(h.lca_info['event_parent_organisation'], url=h.lca_info['event_parent_url']) }.</p>
+      <p>${ h.link_to(h.klf_info['event_name'], url=h.klf_info['event_url']) } is a project of ${ h.link_to(h.klf_info['event_parent_organisation'], url=h.klf_info['event_parent_url']) }.</p>
       <p>
-        ${ h.lca_info['event_postal_address'] }<br>
-        ${ h.lca_info['event_tax_number'] }<br>
-        Phone: ${ h.lca_info['event_phone_number'] }<br>
-        Fax: ${ h.lca_info['event_fax_number'] }<br>
+        ${ h.klf_info['event_postal_address'] }<br>
+        ${ h.klf_info['event_tax_number'] }<br>
+        Phone: ${ h.klf_info['event_phone_number'] }<br>
+        Fax: ${ h.klf_info['event_fax_number'] }<br>
       </p>
     </div>
 </div>

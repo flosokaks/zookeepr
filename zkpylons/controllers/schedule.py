@@ -32,7 +32,7 @@ from zkpylons.model.location import Location, LocationValidator
 from zkpylons.model.event import Event, EventValidator
 from zkpylons.model.event_type import EventType
 
-from zkpylons.config.lca_info import lca_info
+from zkpylons.config.klf_info import klf_info
 from zkpylons.config.zkpylons_config import file_paths
 
 import os
@@ -133,15 +133,15 @@ class ScheduleController(BaseController):
         for schedule in c.schedule_collection:
             if not schedule.time_slot.heading:
                 event = ical.add('vevent')
-                event.add('uid').value = str(schedule.id) + '@' + h.lca_info['event_host']
+                event.add('uid').value = str(schedule.id) + '@' + h.klf_info['event_host']
                 # Created
-                event.add('created').value = schedule.creation_timestamp.replace(tzinfo=h.lca_info['time_zone'])
+                event.add('created').value = schedule.creation_timestamp.replace(tzinfo=h.klf_info['time_zone'])
                 # Last Modified
-                event.add('dtstamp').value = schedule.last_modification_timestamp.replace(tzinfo=h.lca_info['time_zone'])
-                event.add('last-modified').value = schedule.last_modification_timestamp.replace(tzinfo=h.lca_info['time_zone'])
+                event.add('dtstamp').value = schedule.last_modification_timestamp.replace(tzinfo=h.klf_info['time_zone'])
+                event.add('last-modified').value = schedule.last_modification_timestamp.replace(tzinfo=h.klf_info['time_zone'])
                 # Start and End Time
-                event.add('dtstart').value = schedule.time_slot.start_time.replace(tzinfo=h.lca_info['time_zone'])
-                event.add('dtend').value = schedule.time_slot.end_time.replace(tzinfo=h.lca_info['time_zone'])
+                event.add('dtstart').value = schedule.time_slot.start_time.replace(tzinfo=h.klf_info['time_zone'])
+                event.add('dtend').value = schedule.time_slot.end_time.replace(tzinfo=h.klf_info['time_zone'])
                 # Title and Author (need to add Author here)
                 event.add('summary').value = schedule.event.computed_title() + '. ' + h.list_to_string(schedule.event.computed_speakers())
                 # Abstract, if we have one
@@ -294,6 +294,6 @@ class ScheduleController(BaseController):
             c.talk = Proposal.find_accepted_by_id(id)
         except:
             c.talk_id = id
-            c.webmaster_email = lca_info['webmaster_email']
+            c.webmaster_email = klf_info['webmaster_email']
             return render('/schedule/invalid_talkid.mako')
         return render('/schedule/table_view.mako')

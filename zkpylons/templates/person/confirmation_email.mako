@@ -1,4 +1,4 @@
-From: ${ h.lca_info['event_name'] } <${ h.lca_info['contact_email'] }>
+From: ${ h.klf_info['event_name'] } <${ h.klf_info['contact_email'] }>
 Subject: ${ h.event_name() } Forgotten Password Reset Confirmation
 To: ${ c.email }
 

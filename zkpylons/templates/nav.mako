@@ -3,7 +3,7 @@
     # Hack for schedule url
     if url.startswith('/schedule'):
         url = '/programme' + url
-    mm = h.lca_menu
+    mm = h.klf_menu
 
     where = ''
     if url == '' or url == '/':

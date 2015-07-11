@@ -61,7 +61,7 @@ Creating a development environment
 3. Configure the virtual environment.
 
         ```
-        cp zkpylons/config/lca_info.py.sample zkpylons/config/lca_info.py
+        cp zkpylons/config/klf_info.py.sample zkpylons/config/klf_info.py
         cp development.ini.sample development.ini
         python setup.py develop
         ```

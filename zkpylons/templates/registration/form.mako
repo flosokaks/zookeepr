@@ -20,7 +20,7 @@ import re
 import array
 %>
 
-<p class="note">${ h.lca_info['event_pricing_disclaimer'] }</p>
+<p class="note">${ h.klf_info['event_pricing_disclaimer'] }</p>
 
         <fieldset id="personal">
           <h2>Personal Information</h2>
@@ -420,7 +420,7 @@ accommdisplay();
           <p class="entries">${ h.text('registration.special', size=60) }</p>
           <p class="note">Please enter any requirements if necessary; access requirements, etc.</p>
 % if h.lca_rego['ask_past_confs']:
-             <p class="label"><label for="registration.prevlca">Have you attended ${ h.lca_info['event_generic_name'] } before?</label></p>
+             <p class="label"><label for="registration.prevlca">Have you attended ${ h.klf_info['event_generic_name'] } before?</label></p>
             <p class="entries">
             <table>
               <tr>

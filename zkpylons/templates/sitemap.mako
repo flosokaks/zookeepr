@@ -1,11 +1,11 @@
 <%inherit file="base.mako" />
 
 <ul>
-% for (t, u, c) in h.lca_menu:
+% for (t, u, c) in h.klf_menu:
   <li> <a href="${ u }">${ t }</a></li>
-%   if h.lca_submenus.has_key(c):
+%   if h.klf_submenus.has_key(c):
   <ul>
-%     for sub in h.lca_submenus[c]:
+%     for sub in h.klf_submenus[c]:
 <%
      link = sub.replace('/', '_').lower()
      link = '/' + c + '/' + link

@@ -82,13 +82,13 @@ Not specified
 ${ h.line_break(h.util.html_escape(c.funding.why_attend)) | n}
 </blockquote></p>
 
-<p class="label">Have you attended ${ h.lca_info['event_generic_name'] } before?</p>
+<p class="label">Have you attended ${ h.klf_info['event_generic_name'] } before?</p>
 <p class="entries">
 <table>
   <tr>
     <td>
-% for (year, desc) in h.lca_rego['past_confs']:
-${ h.yesno(year in (c.funding.prevlca or [])) |n }
+% for (year, desc) in h.klf_rego['past_confs']:
+${ h.yesno(year in (c.funding.prevklf or [])) |n }
 ${ desc }<br />
 % endfor
     </td>

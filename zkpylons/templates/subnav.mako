@@ -1,6 +1,6 @@
 <%
     # Edit the list of submenus here :-)
-    submenus = h.lca_submenus
+    submenus = h.klf_submenus
 
     # The current URL can be accessed as h.url()()
     url = h.url_for()
@@ -9,7 +9,7 @@
         url = '/programme' + url
 
     where = ''
-    map = h.lca_menu
+    map = h.klf_menu
 
     for (t, u, w) in map:
         if url.startswith('/' + w):

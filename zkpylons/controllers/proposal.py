@@ -22,7 +22,7 @@ from zkpylons.model import Proposal, ProposalType, ProposalStatus, TargetAudienc
 
 from zkpylons.lib.validators import ReviewSchema
 
-from zkpylons.config.lca_info import lca_info
+from zkpylons.config.klf_info import klf_info
 
 log = logging.getLogger(__name__)
 
@@ -87,11 +87,11 @@ class ApproveSchema(BaseSchema):
 class ProposalController(BaseController):
 
     def __init__(self, *args):
-        c.cfp_status = lca_info['cfp_status']
-        c.cfmini_status = lca_info['cfmini_status']
-        c.proposal_editing = lca_info['proposal_editing']
-        c.cfp_hide_assistance_info = lca_info['cfp_hide_assistance_info']
-        c.cfp_hide_scores = lca_info['cfp_hide_scores']
+        c.cfp_status = klf_info['cfp_status']
+        c.cfmini_status = klf_info['cfmini_status']
+        c.proposal_editing = klf_info['proposal_editing']
+        c.cfp_hide_assistance_info = klf_info['cfp_hide_assistance_info']
+        c.cfp_hide_scores = klf_info['cfp_hide_scores']
 
     @authorize(h.auth.is_valid_user)
     @authorize(h.auth.is_activated_user)
@@ -336,9 +336,9 @@ class ProposalController(BaseController):
 
         meta.Session.commit()
 
-        if lca_info['proposal_update_email'] != '':
-            body = "Subject: %s Proposal Updated\n\nID:    %d\nTitle: %s\nType:  %s\nURL:   %s" % (h.lca_info['event_name'], c.proposal.id, c.proposal.title, c.proposal.type.name.lower(), "http://" + h.host_name() + h.url_for(action="view"))
-            email(lca_info['proposal_update_email'], body)
+        if klf_info['proposal_update_email'] != '':
+            body = "Subject: %s Proposal Updated\n\nID:    %d\nTitle: %s\nType:  %s\nURL:   %s" % (h.klf_info['event_name'], c.proposal.id, c.proposal.title, c.proposal.type.name.lower(), "http://" + h.host_name() + h.url_for(action="view"))
+            email(klf_info['proposal_update_email'], body)
 
         h.flash("Proposal %s edited!"%p_edit)
         return redirect_to('/proposal')

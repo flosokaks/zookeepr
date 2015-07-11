@@ -1,6 +1,6 @@
 import urllib2
 from xml.dom import minidom
-from zkpylons.config.lca_info import lca_info
+from zkpylons.config.klf_info import klf_info
 
 pxpay_url = 'https://www.paymentexpress.com/pxpay/pxaccess.aspx'
 currency  = 'NZD'
@@ -21,8 +21,8 @@ def get_node_value(parent_node, node_name):
 
 def generate_request(fields):
     xml_request = "<GenerateRequest>"
-    xml_request += "<PxPayUserId>" + lca_info['paymentgateway_userid'] + "</PxPayUserId>"
-    xml_request += "<PxPayKey>" + lca_info['paymentgateway_secretkey'] + "</PxPayKey>"
+    xml_request += "<PxPayUserId>" + klf_info['paymentgateway_userid'] + "</PxPayUserId>"
+    xml_request += "<PxPayKey>" + klf_info['paymentgateway_secretkey'] + "</PxPayKey>"
     xml_request += "<AmountInput>" + fields['amount'] + "</AmountInput>"
     xml_request += "<CurrencyInput>" + currency + "</CurrencyInput>"
     xml_request += "<MerchantReference>INV" + str(fields['invoice_id']) + "</MerchantReference>"
@@ -32,7 +32,7 @@ def generate_request(fields):
     xml_request += "<TxnData3></TxnData3>"
     xml_request += "<TxnType>Purchase</TxnType>"
     xml_request += "<TxnId>PAY" + str(fields['payment_id']) + "</TxnId>"
-    xml_request += "<EnableAddBillCard>0</EnableAddBillCard>"
+    xml_request += "<EnableAddBilklfrd>0</EnableAddBilklfrd>"
     xml_request += "<UrlSuccess>" + fields['return_url'] + "</UrlSuccess>"
     xml_request += "<UrlFail>" + fields['return_url'] + "</UrlFail>"
     xml_request += "</GenerateRequest>"
@@ -45,12 +45,12 @@ def generate_request(fields):
     return valid, get_node_value(request_node, 'URI')
 
 def process_response(fields):
-    if fields['userid'] != lca_info['paymentgateway_userid']:
+    if fields['userid'] != klf_info['paymentgateway_userid']:
         return None, ['Invalid userid in redirect from payment gateway: ' + fields['userid'] ]
 
     xml_request = "<ProcessResponse>"
-    xml_request += "<PxPayUserId>" + lca_info['paymentgateway_userid'] + "</PxPayUserId>"
-    xml_request += "<PxPayKey>" + lca_info['paymentgateway_secretkey'] + "</PxPayKey>"
+    xml_request += "<PxPayUserId>" + klf_info['paymentgateway_userid'] + "</PxPayUserId>"
+    xml_request += "<PxPayKey>" + klf_info['paymentgateway_secretkey'] + "</PxPayKey>"
     xml_request += "<Response>" + fields['result'] + "</Response>"
     xml_request += "</ProcessResponse>"
 

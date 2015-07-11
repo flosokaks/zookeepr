@@ -1,4 +1,4 @@
-To: ${ h.lca_info['contact_email'] }
+To: ${ h.klf_info['contact_email'] }
 Subject: Invoice voided by ${ c.person.firstname } ${ c.person.lastname }
 
 Invoice:  ${ c.invoice.id }

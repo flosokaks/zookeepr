@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${ h.lca_info["event_name"] } News</title>
+    <title>${ h.klf_info["event_name"] } News</title>
     <link>http://${ h.host_name() }</link>
-    <description>${ h.lca_info["event_byline"] }</description>
+    <description>${ h.klf_info["event_byline"] }</description>
     <language>en-us</language>
 % for d in c.db_content_collection:
     <item>

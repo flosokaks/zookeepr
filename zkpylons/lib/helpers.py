@@ -34,7 +34,7 @@ from zkpylons.lib import auth
 
 from zkpylons.model import Person
 
-from zkpylons.config.lca_info import lca_info, lca_rego, lca_menu, lca_submenus
+from zkpylons.config.klf_info import klf_info, klf_rego, klf_menu, klf_submenus
 from zkpylons.config.zkpylons_config import file_paths
 
 from sqlalchemy.orm.util import object_mapper
@@ -113,7 +113,7 @@ def webmaster_email(text=None):
     Renders a link to the committee; optionally takes a text, which will be
     the text of the anchor (defaults to the e-mail address).
     """
-    email = lca_info['webmaster_email']
+    email = klf_info['webmaster_email']
     if text == None:
         text = email
     return link_to(text, 'mailto:' + email)
@@ -124,7 +124,7 @@ def contact_email(text=None):
     Renders a link to the committee; optionally takes a text, which will be
     the text of the anchor (defaults to the e-mail address).
     """
-    email = lca_info['contact_email']
+    email = klf_info['contact_email']
     if text == None:
         text = email
 
@@ -135,37 +135,37 @@ def host_name():
 
     Returns the fqdn for the website.
     """
-    return lca_info['event_host']
+    return klf_info['event_host']
 
 def event_name():
     """ Name of the event
 
     Returns the name of the event we're running (yay).
     """
-    return lca_info['event_name']
+    return klf_info['event_name']
 
 def event_shortname():
     """
 
     Returns the short name of teh event we're running.
     """
-    return lca_info['event_shortname']
+    return klf_info['event_shortname']
 
 def event_link():
     """
 
     Returns a link to the event website
     """
-    return link_to(lca_info['event_name'], lca_info['event_url'])
+    return link_to(klf_info['event_name'], klf_info['event_url'])
 
 def event_parent_org_link():
     """
 
     Returns a link to the parent organisation
     """
-    return link_to(lca_info['event_parent_organisation'], lca_info['event_parent_url'])
+    return link_to(klf_info['event_parent_organisation'], klf_info['event_parent_url'])
 
-rot_26 = "rot_13" #used for being sneaky in the tag hashing for LCA2012
+rot_26 = "rot_13" #used for being sneaky in the tag hashing for KLF2012
 
 def slideshow(set, small=None):
     """
@@ -329,10 +329,10 @@ def extension(name):
     return name.split('.')[-1]
 
 def silly_description():
-    adverb = random.choice(lca_rego['silly_description']['adverbs'])
-    adjective = random.choice(lca_rego['silly_description']['adjectives'])
-    noun = random.choice(lca_rego['silly_description']['nouns'])
-    start = random.choice(lca_rego['silly_description']['starts'])
+    adverb = random.choice(klf_rego['silly_description']['adverbs'])
+    adjective = random.choice(klf_rego['silly_description']['adjectives'])
+    noun = random.choice(klf_rego['silly_description']['nouns'])
+    start = random.choice(klf_rego['silly_description']['starts'])
     if start == 'a' and adverb[0] in ['a', 'e', 'i', 'o', 'u']:
         start = 'an'
     desc = '%s %s %s %s' % (start, adverb, adjective, noun)
@@ -342,7 +342,7 @@ def silly_description():
 def silly_description_checksum(desc):
     import hashlib, math
     haiku = "Come to Ballarat"\
-          "LCA Under the stars"\
+          "KLF Under the stars"\
           "Comets is landing..."
 
     #This is meant to be difficult to read, no telling me its indistinguishable from my normal code - Josh
@@ -470,13 +470,13 @@ def number_to_percentage(number):
 
 def sales_tax(amount):
     """ Calculate the sales tax that for the supplied amount. """
-    if 'sales_tax_multiplier' in lca_info:
-        sales_tax = int(amount * lca_info['sales_tax_multiplier'])
-    elif 'sales_tax_divisor' in lca_info:
-        sales_tax = int(amount / lca_info['sales_tax_divisor'])
-    else:
-        # wtf?
-        sales_tax = 0
+    # if 'sales_tax_multiplier' in klf_info:
+    #     sales_tax = int(amount * klf_info['sales_tax_multiplier'])
+    # elif 'sales_tax_divisor' in klf_info:
+    #     sales_tax = int(amount / klf_info['sales_tax_divisor'])
+    # else:
+    #     # wtf?
+    sales_tax = 0
 
     return sales_tax
 
@@ -529,7 +529,7 @@ def url_for(*args, **kwargs):
 
 
 def full_url_for(*args, **kwargs):
-    return os.path.join(lca_info['event_permalink'], url_for(*args, **kwargs))
+    return os.path.join(klf_info['event_permalink'], url_for(*args, **kwargs))
 
 
 def list_to_string(list, primary_join='%s and %s', secondary_join=', ', html = False):
@@ -544,7 +544,7 @@ def list_to_string(list, primary_join='%s and %s', secondary_join=', ', html = F
     return list
 
 def check_for_incomplete_profile(person):
-    if not person.firstname or not person.lastname or not person.i_agree or (lca_rego['personal_info']['home_address'] == 'yes' and (not person.address1 or not person.city or not person.postcode)):
+    if not person.firstname or not person.lastname or not person.i_agree or (klf_rego['personal_info']['home_address'] == 'yes' and (not person.address1 or not person.city or not person.postcode)):
         if not session.get('redirect_to', None):
             session['redirect_to'] =  request.path_info
             session.save()

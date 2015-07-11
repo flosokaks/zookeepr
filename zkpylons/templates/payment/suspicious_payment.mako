@@ -1,4 +1,4 @@
-To: ${ h.lca_info['contact_email'] }
+To: ${ h.klf_info['contact_email'] }
 Subject: Suspicious payment from ${ c.person.firstname } ${ c.person.lastname }
 
 Payment:         ${ c.pr.payment.id }

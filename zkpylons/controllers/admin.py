@@ -27,7 +27,7 @@ from zkpylons.model.social_network import SocialNetwork
 from zkpylons.model.special_registration import SpecialRegistration
 from zkpylons.model.volunteer import Volunteer
 
-from zkpylons.config.lca_info import lca_info, lca_rego
+from zkpylons.config.klf_info import klf_info, klf_rego
 
 from zkpylons.lib.ssl_requirement import enforce_ssl
 
@@ -420,7 +420,7 @@ class AdminController(BaseController):
     @authorize(h.auth.has_organiser_role)
     def _countdown(self):
         """ How many days until conference opens """
-        timeleft = lca_info['date'] - datetime.now()
+        timeleft = klf_info['date'] - datetime.now()
         c.text = "%.1f days" % (timeleft.days +
                                                timeleft.seconds / (3600*24.))
         return render('/admin/text.mako')
@@ -789,9 +789,9 @@ class AdminController(BaseController):
         x=1
         for row in d1_data:
           t = row[t_offs]
-          # The invoice reference (t) takes the form "lca2012 i-18 p-11"
+          # The invoice reference (t) takes the form "klf2012 i-18 p-11"
           # We only want the i value so strip the rest off
-          t = t.strip("lca2012 i")
+          t = t.strip("klf2012 i")
           t = t.strip("-")
           t = int(t.split(" ")[0])
 
@@ -857,7 +857,7 @@ class AdminController(BaseController):
         return sql_response(query)
 
     @authorize(h.auth.has_organiser_role)
-    def lca_announce_signup(self):
+    def klf_announce_signup(self):
         """ People who ticked "I want to sign up to the low traffic conference announcement mailing list!" [Mailing Lists] """
 
         c.text = """<p>People who ticked "I want to sign up to the low traffic conference
@@ -876,7 +876,7 @@ class AdminController(BaseController):
         return render('admin/text.mako')
 
     @authorize(h.auth.has_organiser_role)
-    def lca_chat_signup(self):
+    def klf_chat_signup(self):
         """ People who ticked "I want to sign up to the conference attendees mailing list!" [Mailing Lists] """
 
         c.text = """<p>People who ticked "I want to sign up to the conference attendees mailing list!" (whether or not they then went on to pay for
@@ -1059,9 +1059,9 @@ class AdminController(BaseController):
         return table_response()
 
     @authorize(h.auth.has_organiser_role)
-    def planet_lca(self):
+    def planet_klf(self):
         """ List of blog RSS feeds, planet compatible. [Mailing Lists] """
-        c.text = """<p>List of RSS feeds for LCA planet.</p>
+        c.text = """<p>List of RSS feeds for KLF planet.</p>
         <p><textarea cols="100" rows="25">"""
 
         count = 0
@@ -1171,24 +1171,24 @@ class AdminController(BaseController):
 
     @authorize(h.auth.has_organiser_role)
     def previous_years_stats(self):
-        """ Details on how many people have come to previous years of LCA. All people - including unpaid [Statistics] """
+        """ Details on how many people have come to previous years of KLF. All people - including unpaid [Statistics] """
         registration_list = meta.Session.query(Registration).all()
         c.columns = ['year', 'People']
         c.data = []
         years = {}
         veterans = []
-        veterans_lca = []
+        veterans_klf = []
         for registration in registration_list:
-            if type(registration.prevlca) == list:
-                for year in registration.prevlca:
+            if type(registration.prevklf) == list:
+                for year in registration.prevklf:
                     if years.has_key(year):
                         years[year] += 1
                     else:
                         years[year] = 1
-                if len(registration.prevlca) == len(lca_rego['past_confs']):
+                if len(registration.prevklf) == len(klf_rego['past_confs']):
                     veterans.append(registration.person.firstname + " " + registration.person.lastname)
-                elif len(registration.prevlca) == (len(lca_rego['past_confs']) - 1):
-                    veterans_lca.append(registration.person.firstname + " " + registration.person.lastname)
+                elif len(registration.prevklf) == (len(klf_rego['past_confs']) - 1):
+                    veterans_klf.append(registration.person.firstname + " " + registration.person.lastname)
         for (year, value) in years.iteritems():
             c.data.append([year, value])
 
@@ -1199,7 +1199,7 @@ class AdminController(BaseController):
             ','.join([str(count) for (label, count) in c.data]),
             '|'.join([label for (label, count) in c.data]),
         )
-        c.text += "Veterans: " + ", ".join(veterans) + "<br><br>Veterans of LCA (excluding CALU): " + ", ".join(veterans_lca)
+        c.text += "Veterans: " + ", ".join(veterans) + "<br><br>Veterans of KLF (excluding CALU): " + ", ".join(veterans_klf)
         return table_response()
 
     @authorize(h.auth.has_organiser_role)
@@ -1499,7 +1499,7 @@ class AdminController(BaseController):
         c.data = []
         c.noescape = True
         c.columns = ['ID', 'Vol ID', 'Name', 'Email', 'Country', 'City', 'Status', 'Type']
-        for area in h.lca_rego['volunteer_areas']:
+        for area in h.klf_rego['volunteer_areas']:
           c.columns.append(area['name'])
         c.columns.append('Other')
         c.columns.append('Experience')
@@ -1538,7 +1538,7 @@ class AdminController(BaseController):
 
           row.append(type)
 
-          for area in h.lca_rego['volunteer_areas']:
+          for area in h.klf_rego['volunteer_areas']:
             code = area['name'].replace(' ', '_').replace('.', '_')
             if code in v.areas:
               row.append('Yes')
@@ -1709,7 +1709,7 @@ class AdminController(BaseController):
             if p.has_paid_ticket():
                 filtered_list.append(r)
 
-        c.columns = ['Who', 'From', 'Email', 'Shell', 'Nick', 'Twitter', 'Previous LCAs']
+        c.columns = ['Who', 'From', 'Email', 'Shell', 'Nick', 'Twitter', 'Previous KLFs']
         c.data = []
         sn_twitter = SocialNetwork.find_by_name("Twitter")
         for r in filtered_list:
@@ -1720,7 +1720,7 @@ class AdminController(BaseController):
                 r.shell,
                 r.nick,
                 r.person.social_networks.get(sn_twitter),
-                ','.join(r.prevlca or []),
+                ','.join(r.prevklf or []),
             ])
         return table_response()
 
@@ -1734,7 +1734,7 @@ class AdminController(BaseController):
     @authorize(h.auth.has_organiser_role)
     def _destroy_personal_information(self):
         """ Remove personal information from the database (HIGHLY DESTRUCTIVE!) [Other] """
-        return 'Disabled in controllers/admin.py. <br>Go enable it there if you really need it (i.e. LCA is well over and you have a <b>backup of the database</b>).<br><font color="#FF0000">You have been warned!</font>'
+        return 'Disabled in controllers/admin.py. <br>Go enable it there if you really need it (i.e. KLF is well over and you have a <b>backup of the database</b>).<br><font color="#FF0000">You have been warned!</font>'
         people = Person().find_all()
         for person in people:
             # optional fields can be cleared
@@ -1942,7 +1942,7 @@ class AdminController(BaseController):
             if c.fulfilment_group.person:
                 filename = c.fulfilment_group.person.email_address + '.pdf'
             else:
-                filename = lca_info['event_shortname'] + '_' + str(c.fulfilment_group.id) + '.pdf'
+                filename = klf_info['event_shortname'] + '_' + str(c.fulfilment_group.id) + '.pdf'
             pdf = open(file_paths['zk_root'] + '/boardingpass/' + filename, 'w')
             pdf.write(pdf_data)
             pdf.close()

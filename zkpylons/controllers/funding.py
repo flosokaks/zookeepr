@@ -26,7 +26,7 @@ from zkpylons.model import meta
 from zkpylons.model import Funding, FundingType, FundingStatus, Role
 from zkpylons.model import FundingAttachment, FundingReview, Person
 
-from zkpylons.config.lca_info import lca_info
+from zkpylons.config.klf_info import klf_info
 
 log = logging.getLogger(__name__)
 
@@ -45,7 +45,7 @@ class FundingSchema(BaseSchema):
     type = FundingTypeValidator()
     diverse_groups = validators.String()
     supporting_information = validators.String()
-    prevlca = DictSet(if_missing=None)
+    prevklf = DictSet(if_missing=None)
 
 class NewFundingSchema(BaseSchema):
     funding = FundingSchema()
@@ -69,15 +69,15 @@ class ApproveSchema(BaseSchema):
 class FundingController(BaseController):
 
     def __init__(self, *args):
-        c.funding_status = lca_info['funding_status']
-        c.funding_editing = lca_info['funding_editing']
+        c.funding_status = klf_info['funding_status']
+        c.funding_editing = klf_info['funding_editing']
 
     @authorize(h.auth.is_valid_user)
     @authorize(h.auth.is_activated_user)
     def __before__(self, **kwargs):
         c.funding_types = FundingType.find_all()
         c.form_fields = {
-          'funding.why_attend': 'Why would you like to attend ' + h.lca_info['event_name'],
+          'funding.why_attend': 'Why would you like to attend ' + h.klf_info['event_name'],
           'funding.how_contribute': 'How do you contribute to the Open Source community',
           'funding.male': 'What is your gender',
           'funding.financial_circumstances': 'What are your financial circumstances',

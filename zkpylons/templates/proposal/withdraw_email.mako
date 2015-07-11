@@ -1,4 +1,4 @@
-From: ${ h.lca_info['event_name'] } <${ h.lca_info['contact_email'] }>
+From: ${ h.klf_info['event_name'] } <${ h.klf_info['contact_email'] }>
 To: ${ c.email_address }
 Subject: WITHDRAWAL of a ${ c.proposal.type.name.lower() } proposal
 

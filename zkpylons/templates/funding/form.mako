@@ -61,13 +61,13 @@
     <p class="note">Please describe why you would like to attend ${ h.event_name() } and indicate the talks that particularly interest you. Up to about 500 words.</p>
 
 
-    <p class="label"><label for="funding.prevlca">Have you attended ${ h.lca_info['event_generic_name'] } before?</label></p>
+    <p class="label"><label for="funding.prevklf">Have you attended ${ h.klf_info['event_generic_name'] } before?</label></p>
     <p class="entries">
     <table>
       <tr>
         <td>
-% for (year, desc) in h.lca_rego['past_confs']:
-         <% label = 'funding.prevlca.%s' % year %>
+% for (year, desc) in h.klf_rego['past_confs']:
+         <% label = 'funding.prevklf.%s' % year %>
 <label>${ h.checkbox(label) } ${ desc }</label><br />
 % endfor
         </td>

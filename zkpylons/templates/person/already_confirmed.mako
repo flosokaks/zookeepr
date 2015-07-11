@@ -8,5 +8,5 @@ Please ${ h.link_to('sign in', url=h.url_for(controller='/person', action='signi
 </p>
 
 <p>
-Don't forget to sign up to the <a href="${ h.lca_info['mailing_list_announce_url'] }">${ h.lca_info['mailing_list_announce_addr'] }</a> and <a href="${ h.lca_info['mailing_list_chat_url'] }">${ h.lca_info['mailing_list_chat_addr'] }</a> mailing list!
+Don't forget to sign up to the <a href="${ h.klf_info['mailing_list_announce_url'] }">${ h.klf_info['mailing_list_announce_addr'] }</a> and <a href="${ h.klf_info['mailing_list_chat_url'] }">${ h.klf_info['mailing_list_chat_addr'] }</a> mailing list!
 </p>

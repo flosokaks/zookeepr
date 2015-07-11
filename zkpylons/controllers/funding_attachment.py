@@ -20,7 +20,7 @@ from zkpylons.lib.mail import email
 from zkpylons.model import meta
 from zkpylons.model import Funding, FundingAttachment
 
-from zkpylons.config.lca_info import lca_info
+#from zkpylons.config.klf_info import klf_info
 
 log = logging.getLogger(__name__)
 

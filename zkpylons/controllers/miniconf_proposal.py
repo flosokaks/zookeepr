@@ -24,16 +24,16 @@ from zkpylons.controllers.proposal import NewProposalSchema
 
 from zkpylons.lib.validators import ReviewSchema
 
-from zkpylons.config.lca_info import lca_info
+from zkpylons.config.klf_info import klf_info
 
 log = logging.getLogger(__name__)
 
 class MiniconfProposalController(BaseController):
 
     def __init__(self, *args):
-        c.cfp_status = lca_info['cfp_status']
-        c.cfmini_status = lca_info['cfmini_status']
-        c.proposal_editing = lca_info['proposal_editing']
+        c.cfp_status = klf_info['cfp_status']
+        c.cfmini_status = klf_info['cfmini_status']
+        c.proposal_editing = klf_info['proposal_editing']
 
     @authorize(h.auth.is_valid_user)
     @authorize(h.auth.is_activated_user)

@@ -74,8 +74,8 @@
         </ul>
 %endif
       </ul>
-%   if 'invoice_message' in h.lca_info and (c.invoice.is_void or not c.invoice.is_paid):
-          <p style="note"><strong>Please Note:</strong> ${ h.lca_info['invoice_message'] }</p>
+%   if 'invoice_message' in h.klf_info and (c.invoice.is_void or not c.invoice.is_paid):
+          <p style="note"><strong>Please Note:</strong> ${ h.klf_info['invoice_message'] }</p>
 %   endif
     </div>
 

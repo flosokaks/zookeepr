@@ -57,7 +57,7 @@
   </attn>
 
   <event>${ h.event_name() }</event>
-  <contact>${ h.lca_info['contact_email'] }</contact>
+  <contact>${ h.klf_info['contact_email'] }</contact>
 
   <items>
 <% itemid = 0 %>

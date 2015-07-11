@@ -21,7 +21,6 @@ from zkpylons.lib.mail import email
 from zkpylons.model import meta
 from zkpylons.model.event_type import EventType
 
-from zkpylons.config.lca_info import lca_info
 
 log = logging.getLogger(__name__)
 

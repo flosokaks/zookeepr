@@ -22,7 +22,7 @@ from zkpylons.lib.mail import email
 from zkpylons.model import meta
 from zkpylons.model.location import Location
 
-from zkpylons.config.lca_info import lca_info
+from zkpylons.config.klf_info import klf_info
 
 log = logging.getLogger(__name__)
 
@@ -124,15 +124,15 @@ class LocationController(BaseController):
         for schedule in c.schedule_collection:
             if not schedule.time_slot.heading:
                 event = ical.add('vevent')
-                event.add('uid').value = str(schedule.id) + '@' + h.lca_info['event_host']
+                event.add('uid').value = str(schedule.id) + '@' + h.klf_info['event_host']
                 # Created
-                event.add('created').value = schedule.creation_timestamp.replace(tzinfo=h.lca_info['time_zone'])
+                event.add('created').value = schedule.creation_timestamp.replace(tzinfo=h.klf_info['time_zone'])
                 # Last Modified
-                event.add('dtstamp').value = schedule.last_modification_timestamp.replace(tzinfo=h.lca_info['time_zone'])
-                event.add('last-modified').value = schedule.last_modification_timestamp.replace(tzinfo=h.lca_info['time_zone'])
+                event.add('dtstamp').value = schedule.last_modification_timestamp.replace(tzinfo=h.klf_info['time_zone'])
+                event.add('last-modified').value = schedule.last_modification_timestamp.replace(tzinfo=h.klf_info['time_zone'])
                 # Start and End Time
-                event.add('dtstart').value = schedule.time_slot.start_time.replace(tzinfo=h.lca_info['time_zone'])
-                event.add('dtend').value = schedule.time_slot.end_time.replace(tzinfo=h.lca_info['time_zone'])
+                event.add('dtstart').value = schedule.time_slot.start_time.replace(tzinfo=h.klf_info['time_zone'])
+                event.add('dtend').value = schedule.time_slot.end_time.replace(tzinfo=h.klf_info['time_zone'])
                 # Title and Author (need to add Author here)
                 event.add('summary').value = schedule.event.computed_title() + '. ' + h.list_to_string(schedule.event.computed_speakers())
                 # Abstract, if we have one

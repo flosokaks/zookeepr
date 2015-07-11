@@ -33,7 +33,7 @@ from zkpylons.model import Invoice, InvoiceItem
 from zkpylons.model.special_offer import SpecialOffer
 from zkpylons.model.special_registration import SpecialRegistration
 
-from zkpylons.config.lca_info import lca_info, lca_rego
+from zkpylons.config.klf_info import klf_info, klf_rego
 
 from zkpylons.controllers.person import PersonSchema
 
@@ -116,14 +116,14 @@ class RegistrationSchema(BaseSchema):
     vcstext = OtherValidator(if_missing=None, list=('visual sourcesafe', 'bitkeeper'))
     silly_description = validators.String(if_missing=None)
     silly_description_checksum = validators.String(if_missing=None, strip=True)
-    if lca_rego['pgp_collection'] != 'no':
+    if klf_rego['pgp_collection'] != 'no':
         keyid = validators.String()
     planetfeed = validators.String(if_missing=None)
     voucher_code = VoucherValidator(if_empty=None)
     diet = validators.String()
     special = validators.String()
     signup = DictSet(if_missing=None)
-    prevlca = DictSet(if_missing=None)
+    prevklf = DictSet(if_missing=None)
 
     chained_validators = [
         SillyDescriptionChecksum("silly_description", "silly_description_checksum"),
@@ -172,7 +172,7 @@ class RegistrationController(BaseController):
         for invoice in h.signed_in_person().invoices:
             if not invoice.is_void:
                 if invoice.is_paid and invoice.total != 0:
-                    return False, "Sorry, you've already paid. Contact the team at " + h.lca_info['contact_email'] + " if you need anything changed."
+                    return False, "Sorry, you've already paid. Contact the team at " + h.klf_info['contact_email'] + " if you need anything changed."
         return True, "You can edit"
 
     def _product_available(self, product, stock=True, qty=0):
@@ -317,17 +317,17 @@ class RegistrationController(BaseController):
             if c.signed_in_person.special_registration:
                 c.special_offer = c.signed_in_person.special_registration[0].special_offer
 
-        if c.special_offer is None and lca_info['conference_status'] is not 'open':
+        if c.special_offer is None and klf_info['conference_status'] is not 'open':
             if not h.auth.authorized(h.auth.has_organiser_role):
                 redirect_to(action='status')
             else:
                 # User is an organiser, so if the status is also 'debug' then they can register
-                if lca_info['conference_status'] is not 'debug':
+                if klf_info['conference_status'] is not 'debug':
                     redirect_to(action='status')
 
 
         defaults = {}
-        if h.lca_rego['personal_info']['home_address'] == 'no':
+        if h.klf_rego['personal_info']['home_address'] == 'no':
             defaults['person.address1'] = 'not available'
             defaults['person.city'] = 'not available'
             defaults['person.postcode'] = 'not available'
@@ -372,12 +372,12 @@ class RegistrationController(BaseController):
             if c.special_offer is not None and not c.special_offer.enabled:
                 c.special_offer = None
 
-        if c.special_offer is None and lca_info['conference_status'] is not 'open':
+        if c.special_offer is None and klf_info['conference_status'] is not 'open':
             if not h.auth.authorized(h.auth.has_organiser_role):
                 redirect_to(action='status')
             else:
                 # User is an organiser, so if the status is also 'debug' then they can register
-                if lca_info['conference_status'] is not 'debug':
+                if klf_info['conference_status'] is not 'debug':
                     redirect_to(action='status')
 
 
@@ -454,24 +454,24 @@ class RegistrationController(BaseController):
         else:
             defaults['registration.over18'] = 0
 
-        if c.registration.shell in lca_rego['shells'] or c.registration.shell == '':
+        if c.registration.shell in klf_rego['shells'] or c.registration.shell == '':
             defaults['registration.shell'] = c.registration.shell
         else:
             defaults['registration.shell'] = 'other'
             defaults['registration.shelltext'] = c.registration.shell
 
-        if c.registration.editor in lca_rego['editors'] or c.registration.editor == '':
+        if c.registration.editor in klf_rego['editors'] or c.registration.editor == '':
             defaults['registration.editor'] = c.registration.editor
         else:
             defaults['registration.editor'] = 'other'
             defaults['registration.editortext'] = c.registration.editor
 
-        if c.registration.distro in lca_rego['distros'] or c.registration.distro == '':
+        if c.registration.distro in klf_rego['distros'] or c.registration.distro == '':
             defaults['registration.distro'] = c.registration.distro
         else:
             defaults['registration.distro'] = 'other'
             defaults['registration.distrotext'] = c.registration.distro
-        if c.registration.vcs in lca_rego['vcses']:
+        if c.registration.vcs in klf_rego['vcses']:
             defaults['registration.vcs'] = c.registration.vcs
         else:
             defaults['registration.vcs'] = 'other'
@@ -750,7 +750,7 @@ class RegistrationController(BaseController):
 
             # We have included products, create a discount for the cost of them.
             # This is not perfect, products of different prices can be discounted,
-            # and it can either favor the customer or LCA, depending on the order
+            # and it can either favor the customer or KLF, depending on the order
             # of items on the invoice
             if free_cost > 0:
                 discount_item = InvoiceItem(description="Discount for " + str(freebies[freebie]) + " included " + included_products[freebie].name, qty=1, cost=-free_cost)
@@ -1113,7 +1113,7 @@ class RegistrationController(BaseController):
             }
 
             # For some reason some keys are None even if pgp_collection is yes, should probably fix the real problem.
-            if lca_rego['pgp_collection'] != 'no' and registration.keyid:
+            if klf_rego['pgp_collection'] != 'no' and registration.keyid:
                     data['gpg'] = self._sanitise_badge_field(registration.keyid)
             return data
         return {'ticket': '', 'firstname': '', 'lastname': '', 'nickname': '', 'company': '', 'favourites': '', 'gpg': '', 'region': '', 'dinner_tickets': 0, 'speakers_tickets': 0, 'pdns_ticket' : False, 'over18': True, 'silly': '','breakfast': 0}

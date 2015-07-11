@@ -10,7 +10,7 @@ from zkpylons.model import Invoice, Payment
 from zkpylons.model import SocialNetwork
 from zkpylons.model import FulfilmentType, FulfilmentStatus
 
-from zkpylons.config.lca_info import lca_info
+from zkpylons.config.klf_info import klf_info
 
 import cgi
 
@@ -237,7 +237,7 @@ class ExistingPersonValidator_by_email(validators.FancyValidator):
     def validate_python(self, value, state):
         person = Person.find_by_email(value)
         if person is None:
-            msg = 'Your supplied e-mail does not exist in our database. Please try again or if you continue to have problems, contact %s.' % lca_info['contact_email']
+            msg = 'Your supplied e-mail does not exist in our database. Please try again or if you continue to have problems, contact %s.' % klf_info['contact_email']
             raise Invalid(msg, value, state, error_dict={'email_address': msg})
 
 class NotExistingPersonValidator(validators.FancyValidator):

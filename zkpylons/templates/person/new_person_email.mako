@@ -13,7 +13,7 @@ site with the password you provided.
 
 Don't forget to sign up to our announcements mailing list via
 
-  ${ h.lca_info['mailing_list_announce_url'] }
+  ${ h.klf_info['mailing_list_announce_url'] }
 
 Thanks and have a great day!
 

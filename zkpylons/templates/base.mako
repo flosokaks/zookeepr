@@ -1,4 +1,4 @@
-<%def name="title()">${ h.lca_info["event_byline"] }</%def>
+<%def name="title()">${ h.klf_info["event_byline"] }</%def>
 <%def name="short_title()">
    ## Defined in children
 </%def>
@@ -37,7 +37,7 @@
         <link rel="stylesheet" media="screen, projection" href="/screen.css" type="text/css" />
         <link rel="stylesheet" media="screen" href="/css/lightbox.css" type="text/css" />
         <link rel="stylesheet" media="print" href="/print.css" type="text/css" />
-        <link href="/media/news/rss" rel="alternate" type="application/rss+xml" title="LCA2011 News">
+        <link href="/media/news/rss" rel="alternate" type="application/rss+xml" title="KLF2011 News">
 
         ${self.extra_head()}
         <script type="text/javascript" src="/jquery-1.7.1.min.js"></script>
@@ -53,14 +53,14 @@
                 });
             });
         </script>
-%if len(h.lca_info['sponsors']['slideshow']):
+%if len(h.klf_info['sponsors']['slideshow']):
         <script type="text/javascript">
             jQuery(function($) {
                 jQuery('#sponsorsother').crossSlide({
                     sleep: 5,
                     fade: 1,
                     shuffle: 1
-                }, ${ h.json.dumps(h.lca_info['sponsors']['slideshow']) |n }
+                }, ${ h.json.dumps(h.klf_info['sponsors']['slideshow']) |n }
                 );
             });
         </script>
@@ -75,8 +75,8 @@
       </div>
       <div>
       </div>
-      <div id="page-title">${ h.lca_info['event_name'] }</div>
-      <div id="page-subtitle">A ${ h.lca_info['event_parent_organisation'] } Conference</div>
+      <div id="page-title">${ h.klf_info['event_name'] }</div>
+      <div id="page-subtitle">A ${ h.klf_info['event_parent_organisation'] } Conference</div>
     </div>
     <div id="columns">
       <div id="col-left">
@@ -96,18 +96,18 @@
             <%include file="/leftcol/in_the_press.mako" />
             <!-- /block-content -->
 
-%if len(h.lca_info['sponsors']['top']):
+%if len(h.klf_info['sponsors']['top']):
           <h3>Our Emperor Sponsors</h3>
           <ul>
-% for sponsor in h.lca_info['sponsors']['top']:
+% for sponsor in h.klf_info['sponsors']['top']:
             <li>${ h.link_to(h.image(sponsor['src'], alt=sponsor['alt']), sponsor['href']) }</li>
 % endfor
           </ul>
 %endif
-%if len(h.lca_info['sponsors']['slideshow']):
+%if len(h.klf_info['sponsors']['slideshow']):
           <h3>Other Sponsors</h3>
           <div id="sponsorsother" style="width: 200px; height:200px; margin:5px;">
-<% sponsor = h.random.choice(h.lca_info['sponsors']['slideshow']) %>
+<% sponsor = h.random.choice(h.klf_info['sponsors']['slideshow']) %>
             ${ h.link_to(h.image(sponsor['src'], alt=sponsor['alt']), sponsor['href']) }
           </div>
 %endif
@@ -124,7 +124,7 @@
           <%include file="/flash.mako" />
           ${next.body()}
         </div>
-        <div id="footer">© 2011 Zookeepr</div>
+        <div id="footer"><%h.klf_info['copyright']%></div>
       </div>
     </div>
   </div>

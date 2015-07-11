@@ -27,6 +27,20 @@ git clone git@github.com:Pylons/pylons.git
 cd pylons/ &&  2008  python setup.py install --user
 sudo apt-get install libpq-dev libpython-dev libxslt1-dev libxml2-dev
 postgresql python-virtualenv
+
+
+sudo apt-get install postgresql-9.4
+
+
+as postgres: su - postgres
+
+pg_createcluster 9.4 main
+pg_ctlcluster 9.4 main start
+createuser --no-createdb --no-createrole --no-superuser zookeepr
+createdb -O zookeepr zk
+psql --command "ALTER USER zookeepr with PASSWORD 'zookeepr'"
+
+
 cp development.ini.sample development.ini
 git cherry-pick daa1702ec4522a991c5f75b17cb27e15375d2631
 alembic --config development.ini history

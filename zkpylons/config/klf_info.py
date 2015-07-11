@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 # File for holding configuration relative to the current KLF
 # This could be dberised sometimes
 from pytz import timezone
@@ -6,8 +8,9 @@ import os
 
 
 klf_info = {
-  'password_salt' : 'rojkadMeedmefMiopNis',
-  'password_iterations' : 400000,
+    'copyright' : '© 2011 Zookeepr, © 2015 Free/Libre Open Source and Open Knowledge Association of Kansas',
+    'password_salt' : 'rojkadMeedmefMiopNis',
+    'password_iterations' : 400000,
 
   'paymentgateway_userid' : '',
   'paymentgateway_secretkey' : '',

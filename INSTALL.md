@@ -10,15 +10,22 @@ https://github.com/pypa/pip/issues/3017
 
     export PYTHONPATH=/home/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install//lib/python2.7/site-packages/
 
-Run pip like this :
 
-    ~/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/bin/pip install  -r requirements.txt  --cache-dir ~/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/tmp  --root=~/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/
+Remove the old ~/.local
 
+    rm ~/.local/
 
-Run setup like this :
+symlink in the target dir into .local because pip does not change all locations
 
-    python setup.py install --prefix=~/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/
+    ln -s /home/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install ~/.local
+  
+create a temp dir:
 
+    mkdir -p /home/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/tmp
+  
+run pip:
+
+    ~/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/bin/pip install  -r requirements.txt  --no-cache-dir --user
 
 
 External dependencies

@@ -1,5 +1,5 @@
 paste<2.0
-WebOb<1.4
+#WebOb<1.4
 alembic>=0.4.2
 pydns
 lxml
@@ -8,15 +8,15 @@ psycopg2
 pyramid
 pyramid_debugtoolbar
 pyramid_tm
-SQLAlchemy>=0.8.0b2
+#SQLAlchemy>=0.8.0b2
 transaction
 waitress
 zope.sqlalchemy
 
 #### LEGACY (zkpylon) requirements:
-AuthKit>=0.4.0
+AuthKit
 FormEncode>=0.6
 pylibravatar
-pylons
+#pylons
 pytz
 vobject

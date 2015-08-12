@@ -10,7 +10,6 @@ https://github.com/pypa/pip/issues/3017
 
     export PYTHONPATH=/home/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install//lib/python2.7/site-packages/
 
-
 Remove the old ~/.local
 
     rm ~/.local/
@@ -22,10 +21,14 @@ symlink in the target dir into .local because pip does not change all locations
 create a temp dir:
 
     mkdir -p /home/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/tmp
-  
+
+setup your path : 
+
+    export PATH=$PATH:~/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/bin/
+
 run pip:
 
-    ~/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/bin/pip install  -r requirements.txt  --no-cache-dir --user
+    pip install  -r requirements.txt  --no-cache-dir --user
 
 
 External dependencies
@@ -69,6 +72,15 @@ psql --command "ALTER USER zookeepr with PASSWORD 'zookeepr'"
 
 
 cp development.ini.sample development.ini
+vi development.ini
+```
+
+Change this line :
+```
+sqlalchemy.url = postgresql://kansaslf_zookeepr:XXXXPASSWORDXXXX@sql/kansaslf_zookeepr
+```
+
+```
 git cherry-pick daa1702ec4522a991c5f75b17cb27e15375d2631
 alembic --config development.ini history
 alembic --config development.ini upgrade head

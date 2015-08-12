@@ -21,10 +21,14 @@ symlink in the target dir into .local because pip does not change all locations
 create a temp dir:
 
     mkdir -p /home/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/tmp
-  
+
+setup your path : 
+
+    export PATH=$PATH:~/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/bin/
+
 run pip:
 
-    ~/kansaslf/kansaslinuxfest.tuxfamily.org-web/php-include/install/bin/pip install  -r requirements.txt  --no-cache-dir --user
+    pip install  -r requirements.txt  --no-cache-dir --user
 
 
 External dependencies

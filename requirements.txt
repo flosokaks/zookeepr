@@ -1,4 +1,6 @@
-paste<2.0
+pylons
+paste
+pastescript
 #WebOb<1.4
 alembic>=0.4.2
 pydns
@@ -20,3 +22,4 @@ pylibravatar
 #pylons
 pytz
 vobject
+PasteDeploy

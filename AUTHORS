@@ -1,37 +1,59 @@
-zookeepr AUTHORS
-================
-
-The following people are the primary authors of zookeepr. See also the
-THANKS section for a list of all contributors.  Discussion of development occurs on
-the zookeepr-devel AT lists.zookeepr.org mailing list (also an easy way to reach
-the authors).
-
-Active Authors:
-    Joshua Hesketh <josh AT nitrotech DOT org>
-    James Iseppi <james AT iseppi DOT org>
-    Francois Marier <francois AT fmarier DOT org>
-
-Past Authors:
-
-    Jiri Baum <jiri AT baum DOT com DOT au>
-    John Ferlito <johnf AT inodes DOT org>
-    Lindsay Holmwood <auxesis AT gmail DOT com>
-    Michael Kedzierski <ycros AT kruel DOT org>
-    Nick Sonneveld <nick AT sonneveld DOT name>
-    Jamie Wilkinson <jaq AT spacepants DOT org>
-
-zookeepr THANKS
-===============
-
-Many people further contributed to zookeepr by reporting problems, suggesting
-various improvements or submitting actual code.  Here is a list of these
-people, alphabetically by surname.  Help me keep it complete and exempt of
-errors.
-
-    Ben Leslie	<benno AT benno DOT id DOT au>
-    Jeff Waugh	<jdub AT perkypants DOT org>
-    Josh Bush <cheeseness AT yahoo DOT com>
-    Peter Lieverdink <me AT cafuego DOT net>
-    Donna Benjamin
-    Paul Wayper <paulway AT mabula DOT net>
-
+Andrew Ruthven <andrew@etc.gen.nz>
+Angus Lees <gus@inodes.org>
+Ben Leslie <benno@benno.id.au>
+Benjamin Denham <ben.denham@gmail.com>
+Bianca Gibson <bianca.gibson@rea-group.com>
+Brianna Laugher <brianna@laugher.id.au>
+Charles Murray <charles.e.murray@gmail.com>
+Clinton Roy <clinton.roy@gmail.com>
+Daniel Devine <devine@laptop>
+David Bell <dtbell91@gmail.com>
+David Bell <dtbell91@users.noreply.github.com>
+David Formosa <dformosa@antechinus>
+David Tulloh <git-david@tulloh.id.au>
+David Tulloh <github-david@tulloh.id.au>
+Donna Benjamin <donna@kattekrab.net>
+Duncan Macneil <duncan.zookeepr@beatgroover.com>
+Francois Marier <fmarier@gmail.com>
+Francois Marier <francois@debian.org>
+Francois Marier <francois@fmarier.org>
+Francois Marier <francois@mozilla.com>
+James Iseppi <james@iseppi.org>
+James Michael DuPont <JamesMikeDuPont@gmail.com>
+James Michael DuPont <jamesmikedupont@gmail.com>
+Jamie Wilkinson <jaq@spacepants.org>
+Jeff Waugh <jdub@perkypants.org>
+Jiri Baum <jiri@baum.com.au>
+John Ferlito <johnf@inodes.org>
+Josh Bush <cheeseness@yahoo.com>
+Josh Stewart <josh@noisymime.org>
+Joshua Hesketh <josh@nitrotech.org>
+Kathy Reid <kathy@kathyreid.id.au>
+KathyReid <kathy@kathyreid.id.au>
+Lindsay Holmwood <auxesis@gmail.com>
+Malcolm Locke <malc@wholemeal.co.nz>
+Michael Kedzierski <waikurosu@gmail.com>
+Neill Cox <neill.cox@ingenious.com.au>
+Neill Cox <neill@ingenious.com.au>
+Nick Sonneveld <nick@sonneveld.name>
+Paul Wayper <paulway@mabula.net>
+Peter Lieverdink <me@cafuego.net>
+Robert Coup <robert@coup.net.nz>
+Russell Stuart <russell-zookeepr@stuart.id.au>
+Ryan Stuart <ryan@stuart.id.au>
+Sarah Smith <sez@storybridge.org>
+Shaun Nykvist <ninja@kangawallafox.com>
+Stephen Thomas <stephenquoll@gmail.com>
+Steve Walsh <steve@nerdvana.org.au>
+Steven Ellis <steven.ellis@gmail.com>
+Tim McNamara <code@timmcnamara.co.nz>
+Ubuntu <josh@noisymime.org>
+Ubuntu <ubuntu@ip-172-31-12-147.ap-southeast-2.compute.internal>
+Zookeepr <zookeepr@li280-160.members.linode.com>
+ben-denham <bend@catalyst.net.nz>
+elena <ele.wil@gmail.com>
+elena <elena@elena-air-vb.(none)>
+elena <git@elena.net.au>
+root <root@lca2012.linux.org.au>
+u4202343@anu.edu.au <ele.wil@gmail.com>
+x <x@zookeepr-deb>

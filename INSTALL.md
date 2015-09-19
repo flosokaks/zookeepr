@@ -47,20 +47,9 @@ https://github.com/Pylons/webob
 ```
 git clone git@github.com:flosokaks/zookeepr.git
 cd zookeepr/
-sudo apt-get install python-elementtidy
-pip install --user --upgrade WebOb, pyramid, pyramid-debugtoolbar, pyramid-tm, transaction, waitress, zope.sqlalchemy, pylibravatar, pylons, repoze.lru, translationstring, zope.deprecation, venusian, pyramid-mako, WebHelpers, WebError, WebTest
-pip install --user --upgrade WebOb pyramid pyramid-debugtoolbar pyramid-tm transaction waitress zope.sqlalchemy pylibravatar pylons repoze.lru translationstring zope.deprecation venusian pyramid-mako WebHelpers WebError WebTest
-sudo apt-get install python-authkit
-git clone git@github.com:Pylons/webob.git
-cd webob/ &&  python setup.py install --user
-git clone git@github.com:Pylons/pylons.git
-cd pylons/ &&  2008  python setup.py install --user
-sudo apt-get install libpq-dev libpython-dev libxslt1-dev libxml2-dev
-postgresql python-virtualenv
-
-
-sudo apt-get install postgresql-9.4
-
+sudo apt-get install python-elementtidy libpq-dev libpython-dev libxslt1-dev
+libxml2-dev python-authkit postgresql-9.4 python-virtualenv
+pip install --user --upgrade -r requirements.txt
 
 as postgres: su - postgres
 

@@ -1,7 +1,7 @@
-pylons
+git+https://github.com/Pylons/webob.git
+git+https://github.com/Pylons/pylons.git
 paste
 pastescript
-#WebOb<1.4
 alembic>=0.4.2
 pydns
 lxml
@@ -10,7 +10,6 @@ psycopg2
 pyramid
 pyramid_debugtoolbar
 pyramid_tm
-#SQLAlchemy>=0.8.0b2
 transaction
 waitress
 zope.sqlalchemy
